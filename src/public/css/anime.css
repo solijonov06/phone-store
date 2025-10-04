@@ -1,0 +1,35 @@
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 100vh;
+	background: #fffff8;
+	background: linear-gradient(220deg, #FF6 15%, #F60 85%);
+}
+
+svg {
+	fill: #f06;
+	fill: url(#MyGradient);
+}
+
+.mtt {
+	position: fixed;
+	bottom: 10px;
+	right: 20px;
+	color: #e7ea0e;
+	text-decoration: none;
+	font-family: sans-serif;
+	
+	span {
+		color: #e74c3c;
+	}
+	
+	&:hover {
+		color: #999;
+
+		span {
+			color: #c0392b;
+		}
+	}
+}
