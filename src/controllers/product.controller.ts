@@ -104,7 +104,7 @@ res.send(HttpCode.OK).json({data: result});
   
     }catch(err) {
         console.log("Error, updateChosenProduct", err);
-        if(err instanceof Errors) res.status(err.code).json(err);
+        if(err instanceof Errors) res.send(err.code).json(err);
        
     }
 };
