@@ -108,7 +108,7 @@ memberStatus: MemberStatus.ACTIVE
     /*ssr*/
     public async processSignup(input: MemberInput): Promise<Member>{
         const exist = await this.memberModel
-        .findOne({memberType: MemberType.RESTARAUNT})
+        .findOne({memberType: MemberType.STORE})
         .exec();
         console.log("exist:", exist);
         if(exist) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);

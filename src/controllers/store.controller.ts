@@ -7,9 +7,9 @@ import Errors, { HttpCode, Message } from "../libs/error";
 import { Http2ServerResponse } from "http2";
 // RES: send & json & render & redirect & end
 
-const restarauntController:  T ={};
+const storeController:  T ={};
 const memberService =  new MemberService();
-restarauntController.goHome = (req: Request, res: Response) => {
+storeController.goHome = (req: Request, res: Response) => {
     try{
         console.log("goHome");
         res.render("home");
@@ -19,7 +19,7 @@ restarauntController.goHome = (req: Request, res: Response) => {
     }
 };
 
-restarauntController.getSignup = (req: Request, res: Response) => {
+storeController.getSignup = (req: Request, res: Response) => {
     try{
         console.log("getSignup");
           res.render("signup");
@@ -30,7 +30,7 @@ restarauntController.getSignup = (req: Request, res: Response) => {
 };
     
 
-restarauntController.getLogin = (req: Request, res: Response) => {
+storeController.getLogin = (req: Request, res: Response) => {
     try{
         console.log("getLogin");
            res.render("login");
@@ -41,7 +41,7 @@ restarauntController.getLogin = (req: Request, res: Response) => {
 };
 
 
-restarauntController.processSignup = async (req: AdminRequest, res: Response) => {
+storeController.processSignup = async (req: AdminRequest, res: Response) => {
     try{
         console.log("processSignup");
         console.log("req.body:", req.body);
@@ -52,7 +52,7 @@ restarauntController.processSignup = async (req: AdminRequest, res: Response) =>
 
         const newMember: MemberInput = req.body;
         newMember.memberImage = file?.path.replace(/\\/g, "/"); // Windows compatibility
-        newMember.memberType = MemberType.RESTARAUNT;
+        newMember.memberType = MemberType.STORE;
 
        const result = await memberService.processSignup(newMember);
     //    sessions authentication
@@ -72,7 +72,7 @@ restarauntController.processSignup = async (req: AdminRequest, res: Response) =>
 };
 
 
-restarauntController.processLogin = async (req: AdminRequest, res: Response) => {
+storeController.processLogin = async (req: AdminRequest, res: Response) => {
     try{
         console.log("processLogin");
         console.log("req.body:", req.body);
@@ -95,7 +95,7 @@ restarauntController.processLogin = async (req: AdminRequest, res: Response) => 
     }
 };
 
-restarauntController.logout = async (req: AdminRequest, res: Response) => {
+storeController.logout = async (req: AdminRequest, res: Response) => {
     try{
         console.log("logout");
         req.session.destroy(function (){
@@ -111,7 +111,7 @@ restarauntController.logout = async (req: AdminRequest, res: Response) => {
     }
 };
 
-restarauntController.getUsers = async (req: Request, res: Response) => {
+storeController.getUsers = async (req: Request, res: Response) => {
     try{
         console.log("getUsers");
         const result = await memberService.getUsers();
@@ -123,7 +123,7 @@ restarauntController.getUsers = async (req: Request, res: Response) => {
     }
 };
 
-restarauntController.updateChosenUser = async (req: Request, res: Response) => {
+storeController.updateChosenUser = async (req: Request, res: Response) => {
     try{
         console.log("updateChosenUser");
         const result = await memberService.updateChosenUser(req.body);
@@ -138,7 +138,7 @@ restarauntController.updateChosenUser = async (req: Request, res: Response) => {
 
 
 
-restarauntController.checkAuthSesssion= async (req: AdminRequest, res: Response) => {
+storeController.checkAuthSesssion= async (req: AdminRequest, res: Response) => {
     try{
         console.log("checkAuthSesssion");
         
@@ -151,12 +151,12 @@ restarauntController.checkAuthSesssion= async (req: AdminRequest, res: Response)
     }
 };
 
-restarauntController.verifyRestaraunt = (
+storeController.verifyStore = (
     req: AdminRequest, res: Response, next: Function
 ) =>{
    
-        console.log("verifyRestaraunt");
-        if(req.session?.member?.memberType === MemberType.RESTARAUNT){
+        console.log("verifyStore");
+        if(req.session?.member?.memberType === MemberType.STORE){
            req.member = req.session.member
             next();
         }else{
@@ -167,4 +167,4 @@ restarauntController.verifyRestaraunt = (
 };
 
 
-export default restarauntController;
+export default storeController;

@@ -1,5 +1,6 @@
-import { ProductStatus, ProductSize, ProductCollection } from "../../schema/Product.model";
+import {} from "../../schema/Product.model";
 import { ObjectId } from "mongoose";
+import { DeviceVariants, IphoneModelVariants, ProductCollection, ProductStatus } from "../enums/product.enums";
 
 
 export interface Product{
@@ -9,10 +10,10 @@ export interface Product{
         productName: string;
         productPrice: number;
         productLeftCount: number;
-        productSize: ProductSize;
+        iphoneModelVariants: IphoneModelVariants;
         productImages: string[];
         productDesc?: string;
-        productVolume: number;
+        deviceVariants: DeviceVariants;
         productViews: number;
         createdAt: Date;
         updated: Date;
@@ -33,10 +34,10 @@ export interface ProductInput{
         productName: string;
         productPrice: number;
         productLeftCount: number;
-        productSize?: ProductSize;
+        iphoneModelVariants?: IphoneModelVariants;
         productImages: string[];
         productDesc?: string;
-        productVolume?: number;
+        deviceVariants: DeviceVariants;
         productViews?: number;
 }
 
@@ -47,9 +48,9 @@ export interface ProductUpdateInput{
         productName?: string;
         productPrice?: number;
         productLeftCount?: number;
-        productSize?: ProductSize;
+        iphoneModelVariants?: IphoneModelVariants;
         productImages: string[];
         productDesc?: string;
-        productVolume?: number;
+        deviceVariants: DeviceVariants;
         productViews?: number;
 }

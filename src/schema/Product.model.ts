@@ -1,9 +1,10 @@
 import mongoose, { Schema } from "mongoose";
 import {
   ProductCollection,
-  ProductSize,
+  IphoneModelVariants,
   ProductStatus,
-  ProductVolume,
+  ProductStorage,
+  DeviceVariants,
 } from "../libs/enums/product.enums";
 
 const productSchema = new Schema(
@@ -18,6 +19,12 @@ const productSchema = new Schema(
       type: String,
       enum: ProductCollection,
       required: true,
+    },
+
+    productStorage:{
+      type: Number,
+      enum: ProductStorage,
+      default: ProductStorage.HUNDRED_TWENTY_EIGHT,
     },
 
     productName: {
@@ -35,16 +42,16 @@ const productSchema = new Schema(
       required: true,
     },
 
-    productSize: {
+    iphoneModelVariants: {
       type: String,
-      enum: ProductSize,
-      default: ProductSize.NORMAL,
+      enum: IphoneModelVariants,
+      default: IphoneModelVariants.BASE,
     },
 
-    productVolume: {
-      type: Number,
-      enum: ProductVolume,
-      default: ProductVolume.ONE,
+    deviceVariants: {
+      type: String,
+      enum: DeviceVariants,
+      default: DeviceVariants.BASE,
     },
 
     productDesc: {
@@ -66,7 +73,7 @@ const productSchema = new Schema(
 );
 
 productSchema.index(
-  { productName: 1, productSize: 1, ProductVolume: 1 },
+  { productName: 1, iphoneModelVariants: 1, deviceVariants: 1,productStorage: 1  },
   { unique: true }
 );
 export default mongoose.model("Product", productSchema);

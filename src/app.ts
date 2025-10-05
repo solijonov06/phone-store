@@ -1,4 +1,6 @@
 import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config(); // MUST be at the top
 import express from "express"; 
 import path from "path";
 import routerAdmin from "./router-admin";
@@ -8,7 +10,8 @@ import { MORGAN_FORMAT } from "./libs/config";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session"; // sessionlarni mongodbda saqlash
-import { T } from "./libs/types/common";
+import { T } from "./libs/types/common"; //universal object
+
 
 const MongoDBStore = ConnectMongoDB(session);
 const store = new MongoDBStore({
@@ -18,17 +21,17 @@ const store = new MongoDBStore({
 
 /**1-ENTRANCE **/
 const app =express();
-app.use(express.static(path.join(__dirname, "public"))) // faylorlarni public papkasidan olish uchun
-app.use("/uploads", express.static("./uploads")); // faylorlarni uploads papkasidan olish uchun
-app.use(express.urlencoded({extended: true})); // tradidional API uchun
-app.use(express.json()); // rest API uchun
+app.use(express.static(path.join(__dirname, "public"))) // faylorlarni public papkasidan olish uchun ===> MIDDLEWARE
+app.use("/uploads", express.static("./uploads")); // faylorlarni uploads papkasidan olish uchun ===> MIDDLEWARE
+app.use(express.urlencoded({extended: true})); // tradidional API uchun     ===> MIDDLEWARE
+app.use(express.json()); // rest API uchun      ===> MIDDLEWARE
 app.use(cors({
     credentials: true,
     origin: true
 }))
-app.use(cookieParser())
+app.use(cookieParser())//===> MIDDLEWARE
 
-app.use(morgan(MORGAN_FORMAT));
+app.use(morgan(MORGAN_FORMAT));//===> MIDDLEWARE
 
 
 /**2-SESSIONS **/

@@ -2,12 +2,12 @@ console.log("Products frontend javascript file");
 $(function() {
     $(".product-collection").on("change", () => {
         const selectedValues = $(".product-collection").val();
-        if(selectedValues === 'DRINK'){
-            $("#product-collection").hide();
-            $("#product-volume").show();
+        if(selectedValues === 'IPHONE'){
+            $("#iphone-model-variants").show();
+            $("#device-variants").hide()
         }else{
-            $("#product-collection").show();
-            $("#product-volume").hide();
+            $("#iphone-model-variants").hide()
+            $("#device-variants").show();
         }
     });
 
@@ -50,6 +50,7 @@ function validateForm() {
     const productPrice = $('.product-price').val();
     const productStatus = $('.product-status').val();
     const productLeftCount = $('.product-left-count').val();
+    const productStorage = $('.product-storage').val();
     const productCollection = $('.product-collection').val();
     const productDesc = $('.product-desc').val();
 
@@ -59,7 +60,7 @@ function validateForm() {
         productStatus === '' ||
         productLeftCount === '' ||
         productCollection === '' ||
-        productDesc === ''
+        productDesc === '' || productStorage ===''
     ){
         alert('Please fill in all fields.');
         return false;

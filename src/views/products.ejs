@@ -36,9 +36,10 @@
               <tr class="thead-light">
                 <th scope="col">T/r</th>
                 <th scope="col">Product Name</th>
-                <th scope="col">Product Type</th>
-                <th scope="col">Product Volume</th>
+                <th scope="col">Product Collection</th>
+                <th scope="col">Product Model Variant</th>
                 <th scope="col">Product Price</th>
+                <th scope="col">Product Storage</th>
                 <th scope="col">Product Left Count</th>
                 <th scope="col">Status</th>
               </tr>
@@ -49,8 +50,9 @@
                 <td><%= key + 1 %></td>
                 <td><%= value.productName %></td>
                 <td><%= value.productCollection %></td>
-                <td><%= value.productCollection === 'DRINK' ? value.productVolume : value.productSize %></td>
-                <td><%= value.productPrice %></td>
+                <td><%= value.productCollection === 'IPHONE' ? value.iphoneModelVariants : value.deviceVariants %></td>
+                <td>$<%= value.productPrice %></td>
+                <td><%= value.productStorage %> GB</td>
                 <td><%= value.productLeftCount %></td>
                 <td>
                   <select class="spec-select new-product-status" id="<%= value._id %>">
@@ -82,8 +84,8 @@
           <div class="long-input" style="display: flex; align-items: center">
             <span class="new-dish-txt">NEW PRODUCT DETAIL</span>
           </div>
-          <div class="login-input-frame">
-            <div class="long-input">
+          <div class="half-input-frame">
+            <div class="half-input">
               <label>Product Name</label>
               <input
                 type="text"
@@ -98,7 +100,19 @@
               class="product-status"
               hidden
             />
+            <div class="half-input">
+              <label>Product Storage</label>
+                <select class="product-storage" name="productStorage">
+                <option value="32" selected>32 GB</option>
+                <option value="64">64 GB</option>
+                <option value="128">128 GB</option>
+                <option value="256">256 GB</option>
+                <option value="512">512 GB</option>
+                <option value="1">1 TB</option>
+              </select>
+            </div>
           </div>
+            
           <div class="half-input-frame">
             <div class="half-input">
               <label>Product Price</label>
@@ -123,32 +137,53 @@
             <div class="half-input">
               <label>Product Type</label>
               <select class="product-collection" name="productCollection">
-                <option value="DISH" selected>Dish</option>
-                <option value="SALAD">Salad</option>
-                <option value="DESSERT">Dessert</option>
-                <option value="DRINK">Drink</option>
-                <option value="OTHER">Other</option>
+                <option value="IPHONE" selected>IPHONE</option>
+                <option value="SAMSUNG">SAMSUNG</option>
+                <option value="XIAOMI">XIAOMI</option>
+                <option value="VIVO">VIVO</option>
+                <option value="OTHER">OTHER</option>
               </select>
             </div>
 
-            <div class="half-input" id="product-collection">
-              <label>Dish Volume</label>
-              <select class="product-size" name="productSize">
-                <option value="SMALL">Small</option>
-                <option value="NORMAL" selected>Normal</option>
-                <option value="LARGE">Large</option>
-                <option value="SET">Set</option>
+            <div class="half-input" id="iphone-model-variants">
+              <label>Iphone Model Variants</label>
+              <select class="product-size" name="iphoneModelVariants">
+                <option value="PRO">PRO</option>
+                <option value=" " selected> </option>
+                <option value="PRO MAX">PRO MAX</option>
+                <option value="MINI">MINI</option>
+                <option value="PLUS">PLUS</option>
+                <option value="SE">SE</option>
               </select>
             </div>
 
-            <div class="half-input" id="product-volume" style="display: none">
-              <label>Drink Volume</label>
-              <select class="product-volume" name="productVolume">
-                <option value="0.5">0,5 liters</option>
-                <option value="1" selected>1 liters</option>
-                <option value="1.2">1,2 liters</option>
-                <option value="1.5">1,5 liters</option>
-                <option value="2">2 liters</option>
+            <div class="half-input" id="device-variants" style="display: none">
+              <label>Device Variants</label>
+              <select class="product-volume" name="deviceVariants">
+                <option value="GALAXY S">GALAXY S</option>
+                <option value=" " selected>  </option>
+                <option value="GALAXY A" selected>GALAXY A</option>
+                <option value="NOTE">NOTE</option>
+                <option value="Z FLIP">Z FLIP</option>
+                <option value="ULTRA">ULTRA</option>
+                <option value="Z FOLD">Z FOLD</option>
+                <option value="LITE">LITE</option>
+                <option value="PLUS">PLUS</option>
+                <option value="K SERIES">K SERIES</option>
+                <option value="TURBO">TURBO</option>
+                <option value="NORD">NORD</option>
+                <option value="T">T</option>
+                <option value="R">R</option>
+                <option value="PRO">PRO</option>
+                <option value="RENO">RENO</option>
+                <option value="FIND">FIND</option>
+                <option value="A SERIES">A SERIES</option>
+                <option value="NARZO">NARZO</option>
+                <option value="GT">GT</option>
+                <option value="C SERIES">C SERIES</option>
+                <option value="V SERIES">V SERIES</option>
+                <option value="Y SERIES">Y SERIES</option>
+                <option value="X SERIES">X SERIES</option>
               </select>
             </div>
           </div>

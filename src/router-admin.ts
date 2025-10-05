@@ -1,47 +1,47 @@
 import express from "express";
 const routerAdmin = express.Router(); 
-import restarauntController from "./controllers/restaraunt.controller"
+import storeController from "./controllers/store.controller"
 import productController from "./controllers/product.controller";
 import makeUploader from "./libs/utils/uploader";
 
 /*Restarauunt */
-routerAdmin.get("/", restarauntController.goHome);
+routerAdmin.get("/", storeController.goHome);
 routerAdmin
-    .get("/login", restarauntController.getLogin)
-    .post("/login", restarauntController.processLogin);
+    .get("/login", storeController.getLogin)
+    .post("/login", storeController.processLogin);
 routerAdmin
-    .get("/signup", restarauntController.getSignup)
+    .get("/signup", storeController.getSignup)
     .post("/signup",
-     makeUploader("members").single("memberImage"),restarauntController.processSignup);
-routerAdmin.get("/logout", restarauntController.logout);
-routerAdmin.get("/check-me", restarauntController.checkAuthSesssion);
+     makeUploader("members").single("memberImage"),storeController.processSignup);
+routerAdmin.get("/logout", storeController.logout);
+routerAdmin.get("/check-me", storeController.checkAuthSesssion);
 
 
 /*product */
 routerAdmin.get("/product/all",
-restarauntController.verifyRestaraunt,    
+storeController.verifyStore,    
 productController.getAllProducts
 );
 routerAdmin.post("/product/create",
-    restarauntController.verifyRestaraunt,
+    storeController.verifyStore,
     // uploadProductImage.single("productImage"),
     makeUploader("products").array("productImages",5),
      productController.createNewProduct
 
 );
 routerAdmin.post("/product/:id", 
-    restarauntController.verifyRestaraunt,
+    storeController.verifyStore,
     productController.updateChosenProduct
 );
 
 
 /*user */
 routerAdmin.get("/user/all",
-    restarauntController.verifyRestaraunt,
-    restarauntController.getUsers
+    storeController.verifyStore,
+    storeController.getUsers
 );
 routerAdmin.post("/user/edit",
-    restarauntController.verifyRestaraunt,
-    restarauntController.updateChosenUser
+    storeController.verifyStore,
+    storeController.updateChosenUser
 );
 export default routerAdmin; // module.exports = router in commonjs
