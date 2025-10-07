@@ -16,6 +16,12 @@ routerAdmin
 routerAdmin.get("/logout", storeController.logout);
 routerAdmin.get("/check-me", storeController.checkAuthSesssion);
 
+routerAdmin.post(
+    "/update-phone",
+     storeController.verifyStore,
+    storeController.updatePhone
+)
+
 
 /*product */
 routerAdmin.get("/product/all",
@@ -44,4 +50,10 @@ routerAdmin.post("/user/edit",
     storeController.verifyStore,
     storeController.updateChosenUser
 );
+
+routerAdmin.post(
+    "/user/update-phone",
+     storeController.verifyStore,
+    storeController.updatePhone
+)
 export default routerAdmin; // module.exports = router in commonjs

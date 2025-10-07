@@ -51,11 +51,12 @@
           <span class="header-name" style="margin-bottom: 30px"
             >All Users List</span
           >
-          <table class="table table-hover table-sm">
+          <table class="table table-hover table-sm" id="membersTable" border="1" cellpadding="8">
             <thead class="thead-light">
               <tr class="thead-light">
                 <th scope="col">No</th>
                 <th scope="col">Name</th>
+
                 <th scope="col">Phone</th>
                 <th scope="col">Status</th>
               </tr>
@@ -65,7 +66,25 @@
                 <tbody style="background: white">
               <td><%=index +1%></td>
               <td><%= value.memberNick%></td>
-              <td><%= value.memberPhone%></td>
+              <!-- <td><%= value.memberPhone%></td> -->
+                  <td style="width: 13%">
+  <input 
+    type="tel" 
+    class="phone-input" 
+    value="<%= value.memberPhone || '' %>" 
+    data-member-id="<%= value._id %>"
+    placeholder="Enter phone number"
+  />
+  <button 
+    class="update-phone-btn" 
+    data-member-id="<%= value._id %>"
+    title="Update phone number"
+  >
+    ✓
+  </button>
+</td>
+
+
               <td style="width: 13%">
                 <select class="spec-select member-status">
                                       <option value="PAUSE" <%= value.productStatus === 'PAUSE' ? 'selected' : '' %>>PAUSE</option>
@@ -85,6 +104,7 @@
   </div>
 
   <script type="text/javascript" src="/js/users.js"></script>
+  
 </body>
 
 <%- include('includes/footer') %>

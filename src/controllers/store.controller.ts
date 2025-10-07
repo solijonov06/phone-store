@@ -5,6 +5,7 @@ import { MemberInput,LoginInput, AdminRequest } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
 import Errors, { HttpCode, Message } from "../libs/error";
 import { Http2ServerResponse } from "http2";
+import { shapeIntoMongooseObjectId } from "../libs/config";
 // RES: send & json & render & redirect & end
 
 const storeController:  T ={};
@@ -164,6 +165,38 @@ storeController.verifyStore = (
           res.send(`<script>alert("${message}"); window.location.replace("/admin/login")</script>`);
         }
  
+};
+
+storeController.updatePhone = async (req: Request, res: Response) => {
+    try {
+        console.log("POST: /admin/user/update-phone");
+        console.log("Request body:", req.body);
+        
+        const { _id, memberPhone } = req.body;
+        
+        if (!_id || !memberPhone) {
+            return res.status(400).json({
+                error: "Member ID and phone number are required"
+            });
+        }
+
+        // Use this.memberService instead of memberService
+        const result = await memberService.updateMemberPhone(
+            _id, 
+            memberPhone
+        );
+
+        res.status(200).json({
+            message: "Phone number updated successfully",
+            data: result
+        });
+
+    } catch (err) {
+        console.error("Error updating phone:", err);
+        res.status(500).json({
+            error: err instanceof Error ? err.message : "Failed to update phone number"
+        });
+    }
 };
 
 
