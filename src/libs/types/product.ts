@@ -1,6 +1,6 @@
 import {} from "../../schema/Product.model";
 import { ObjectId } from "mongoose";
-import { DeviceVariants, IphoneModelVariants, ProductCollection, ProductStatus } from "../enums/product.enums";
+import { DeviceVariants, IphoneModelVariants, ProductCollection, ProductStatus, ProductStorage } from "../enums/product.enums";
 
 
 export interface Product{
@@ -11,6 +11,7 @@ export interface Product{
         productPrice: number;
         productLeftCount: number;
         iphoneModelVariants: IphoneModelVariants;
+        productStorage: ProductStorage;
         productImages: string[];
         productDesc?: string;
         deviceVariants: DeviceVariants;
@@ -35,6 +36,7 @@ export interface ProductInput{
         productPrice: number;
         productLeftCount: number;
         iphoneModelVariants?: IphoneModelVariants;
+        productStorage: ProductStorage;
         productImages: string[];
         productDesc?: string;
         deviceVariants: DeviceVariants;
@@ -49,6 +51,7 @@ export interface ProductUpdateInput{
         productPrice?: number;
         productLeftCount?: number;
         iphoneModelVariants?: IphoneModelVariants;
+          productStorage: ProductStorage;
         productImages: string[];
         productDesc?: string;
         deviceVariants: DeviceVariants;

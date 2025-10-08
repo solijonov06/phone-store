@@ -220,6 +220,50 @@ public async updateMemberPhone(memberId: string, memberPhone: string): Promise<M
         throw err;
     }
 }
+
+public async updateMemberNick(memberId: string, memberNick: string): Promise<Member> {
+    try {
+        console.log("=== UPDATE PHONE SERVICE ===");
+        console.log("Member ID (string):", memberId);
+        console.log("New Phone:", memberNick);
+        
+        // Convert string to ObjectId
+        const memberObjectId = shapeIntoMongooseObjectId(memberId);
+        console.log("Member ID (ObjectId):", memberObjectId);
+        
+        // Check if member exists first
+        const existingMember = await this.memberModel.findById(memberObjectId).exec();
+        console.log("Existing member:", existingMember);
+        
+        if (!existingMember) {
+            throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_IS_FOUND);
+        }
+        
+        const result = await this.memberModel
+            .findByIdAndUpdate(
+                memberObjectId,
+                { 
+                    memberNick: memberNick,
+                    updatedAt: new Date()
+                },
+                { new: true, runValidators: true }
+            )
+            .exec();
+
+        if (!result) {
+            throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+        }
+
+        console.log("Phone updated successfully:", result.memberNick);
+        console.log("Updated member:", result);
+        return result;
+        
+    } catch (err) {
+        console.error("Service error:", err);
+        throw err;
+    }
+}
+
 }
 
 export default MemberService;

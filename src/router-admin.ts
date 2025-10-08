@@ -56,4 +56,10 @@ routerAdmin.post(
      storeController.verifyStore,
     storeController.updatePhone
 )
+
+routerAdmin.post(
+    "/user/update-nick",
+     storeController.verifyStore,
+    storeController.updateMemberNick
+)
 export default routerAdmin; // module.exports = router in commonjs

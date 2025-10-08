@@ -35,6 +35,7 @@
             <thead class="thead-light">
               <tr class="thead-light">
                 <th scope="col">T/r</th>
+                <th scope="col">Product Photo</th>
                 <th scope="col">Product Name</th>
                 <th scope="col">Product Collection</th>
                 <th scope="col">Product Model Variant</th>
@@ -48,6 +49,9 @@
             <% products.forEach(function (value, key) { %>
               <tbody style="background: white">
                 <td><%= key + 1 %></td>
+                <td>   <% value.productImages.forEach(img => { %>
+      <img src="../../<%= img %>" alt="<%= value.productName %>" style="width: 50px; height: auto; margin-right: 5px;">
+    <% }) %> </td>
                 <td><%= value.productName %></td>
                 <td><%= value.productCollection %></td>
                 <td><%= value.productCollection === 'IPHONE' ? value.iphoneModelVariants : value.deviceVariants %></td>

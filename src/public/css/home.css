@@ -23,7 +23,7 @@
 }
 
 .home-container .nav-item a {
-  color: #e49477;
+  color: #c8ce8dff
 }
 
 .home-container .nav-item a.disabled {
@@ -35,7 +35,7 @@
   z-index: 10000;
   color: #efefee;
   font-size: 40px;
-  font-family: fantasy;
+  font-family: 'Montserrat', 'Futura', sans-serif;
 }
 
 .home-container .animation-frame {

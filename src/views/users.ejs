@@ -56,7 +56,6 @@
               <tr class="thead-light">
                 <th scope="col">No</th>
                 <th scope="col">Name</th>
-
                 <th scope="col">Phone</th>
                 <th scope="col">Status</th>
               </tr>
@@ -65,33 +64,43 @@
               <% users.map(function(value, index){%>
                 <tbody style="background: white">
               <td><%=index +1%></td>
-              <td><%= value.memberNick%></td>
-              <!-- <td><%= value.memberPhone%></td> -->
-                  <td style="width: 13%">
-  <input 
-    type="tel" 
-    class="phone-input" 
-    value="<%= value.memberPhone || '' %>" 
-    data-member-id="<%= value._id %>"
-    placeholder="Enter phone number"
-  />
-  <button 
-    class="update-phone-btn" 
-    data-member-id="<%= value._id %>"
-    title="Update phone number"
-  >
-    ✓
-  </button>
-</td>
-
-
-              <td style="width: 13%">
-                <select class="spec-select member-status">
-                                      <option value="PAUSE" <%= value.productStatus === 'PAUSE' ? 'selected' : '' %>>PAUSE</option>
-                    <option value="PROCESS" <%= value.productStatus === 'PROCESS' ? 'selected' : '' %>>PROCESS</option>
-                    <option value="DELETE" <%= value.productStatus === 'DELETE' ? 'selected' : '' %>>DELETE</option>
-                </select>
+              <!-- <td><%= value.memberNick%></td> -->
+                <td style="width: 40%">
+               <input 
+              type="text" 
+              class="nick-input" 
+              value="<%= value.memberNick || '' %>" 
+              data-member-id="<%= value._id %>"
+              placeholder="Enter nick name"
+              />
+              <button 
+              class="update-nick-btn" 
+              data-member-id="<%= value._id %>"
+              title="Update phone number">✓
+              </button>
               </td>
+              <!-- <td><%= value.memberPhone%></td> -->
+              <td style="width: 40%">
+               <input 
+              type="tel" 
+              class="phone-input" 
+              value="<%= value.memberPhone || '' %>" 
+              data-member-id="<%= value._id %>"
+              placeholder="Enter phone number"
+              />
+              <button 
+              class="update-phone-btn" 
+              data-member-id="<%= value._id %>"
+              title="Update phone number">✓
+              </button>
+              </td>
+           <td style="width: 13%">
+             <select class="spec-select member-status" id="<%= value._id %>">
+              <option value="ACTIVE" <%= value.memberStatus === 'ACTIVE' ? 'selected' : '' %>>ACTIVE</option>
+              <option value="DELETE" <%= value.memberStatus === 'DELETE' ? 'selected' : '' %>>DELETE</option>
+              <option value="BLOCK" <%= value.memberStatus === 'BLOCK' ? 'selected' : '' %>>BLOCK</option>
+            </select>
+            </td>
             </tbody>
                 <%})%>
             

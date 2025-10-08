@@ -197,6 +197,43 @@ storeController.updatePhone = async (req: Request, res: Response) => {
             error: err instanceof Error ? err.message : "Failed to update phone number"
         });
     }
+
+    
+};
+
+
+storeController.updateMemberNick = async (req: Request, res: Response) => {
+    try {
+        console.log("POST: /admin/user/update-phone");
+        console.log("Request body:", req.body);
+        
+        const { _id, memberNick } = req.body;
+        
+        if (!_id || !memberNick) {
+            return res.status(400).json({
+                error: "Member ID and phone number are required"
+            });
+        }
+
+        // Use this.memberService instead of memberService
+        const result = await memberService.updateMemberNick(
+            _id, 
+            memberNick
+        );
+
+        res.status(200).json({
+            message: "Phone number updated successfully",
+            data: result
+        });
+
+    } catch (err) {
+        console.error("Error updating phone:", err);
+        res.status(500).json({
+            error: err instanceof Error ? err.message : "Failed to update phone number"
+        });
+    }
+
+    
 };
 
 
