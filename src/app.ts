@@ -11,6 +11,8 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import ConnectMongoDB from "connect-mongodb-session"; // sessionlarni mongodbda saqlash
 import { T } from "./libs/types/common"; //universal object
+import {Server as SocketIOServer} from "socket.io";
+import http from "http";
 
 
 const MongoDBStore = ConnectMongoDB(session);
@@ -62,6 +64,23 @@ app.set("view engine", "ejs");
 app.use("/admin", routerAdmin);          //SSR: EJS
 app.use("/", router);                   //SPA: REACT              middleware Design pattern
 
-export default app; // module.exports = app in commonjs
+const server = http.createServer(app);
+const io = new SocketIOServer(server, {
+    cors: {
+        origin: true,
+        credentials: true
+    }
+});
+let summaryClient = 0;
+io.on("connection", (socket)=>{
+    summaryClient++;
+    console.log(`Connection & total [${summaryClient}] clients connected.`);
+
+    socket.on("disconnect", ()=>{
+        summaryClient--;
+        console.log(`Disconnection & total [${summaryClient}] clients connected.`);
+    });
+});
+export default server; // module.exports = app in commonjs
 
 

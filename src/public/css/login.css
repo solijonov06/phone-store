@@ -47,7 +47,7 @@
 }
 
 .login-container .login-top span {
-  font-family: "Poppins";
+  font-family:'Montserrat', 'Futura', sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 30px;
@@ -56,7 +56,7 @@
 
 .login-container .login-top p {
   margin-top: 15px;
-  font-family: "Poppins";
+  font-family: 'Montserrat', 'Futura', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -64,7 +64,7 @@
 }
 
 .login-container .login-top div {
-  font-family: "Poppins";
+  font-family: 'Montserrat', 'Futura', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -90,7 +90,7 @@
 
 .login-container .login-input-container label {
   margin-bottom: 0px;
-  font-family: "Poppins";
+  font-family: 'Montserrat', 'Futura', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -116,9 +116,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #33a0ff;
+  background: #11202e;
   border-radius: 10px;
-  font-family: "Nunito";
+  font-family: 'Montserrat', 'Futura', sans-serif;
   font-style: normal;
   font-weight: 800;
   font-size: 24px;
