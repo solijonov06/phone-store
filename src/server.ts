@@ -1,8 +1,12 @@
 import dotenv from "dotenv"; //in commonjs  const dotenv = require("dotenv")
+
+// MUST load env BEFORE importing app.ts (which also calls dotenv.config)
+dotenv.config({
+    path: process.env.NODE_ENV === "production" ? ".env.production" : ".env"
+});
+
 import server from "./app";
 import mongoose from "mongoose";
-
-dotenv.config();//access environmental
 
 mongoose
     .connect(process.env.MONGO_URL as string, {})

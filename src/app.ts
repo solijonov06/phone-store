@@ -1,6 +1,4 @@
 import cors from "cors";
-import dotenv from "dotenv";
-dotenv.config(); // MUST be at the top
 import express from "express"; 
 import path from "path";
 import routerAdmin from "./router-admin";
