@@ -76,9 +76,24 @@ io.on("connection", (socket)=>{
     summaryClient++;
     console.log(`Connection & total [${summaryClient}] clients connected.`);
 
+    // Send total clients to the newly connected user
+    socket.emit("getClientsCount", summaryClient);
+
+    // Broadcast to ALL clients that a new user connected (with updated count)
+    io.emit("userConnected", { 
+        totalClients: summaryClient,
+        message: `New user connected. Total: ${summaryClient}`
+    });
+
     socket.on("disconnect", ()=>{
         summaryClient--;
         console.log(`Disconnection & total [${summaryClient}] clients connected.`);
+
+        // Broadcast to ALL clients that a user disconnected (with updated count)
+        io.emit("userDisconnected", { 
+            totalClients: summaryClient,
+            message: `User disconnected. Total: ${summaryClient}`
+        });
     });
 });
 export default server; // module.exports = app in commonjs
