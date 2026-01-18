@@ -1,6 +1,23 @@
 console.log("This is the train.ts file");
 console.log('Bugungi MIT-Task natijasi: ');
 
+
+/*
+PM2 COMMANDS:
+
+pm2 ls
+pm2 start dist/server.js --name="PHONE"
+pm2 start "npm run start:prod" --name="PHONE"
+pm2 stop id
+pm2 delete id
+pm2 kill
+*/
+
+
+
+
+
+
 /*TASK-ZK:
 
 Shunday function yozing, u har soniyada bir marta consolega 
