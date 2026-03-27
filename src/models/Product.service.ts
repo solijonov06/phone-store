@@ -43,9 +43,7 @@ class ProductService{
        ]).exec();
        if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_IS_FOUND);
 
-       
-
-        return result;
+       return result as unknown as Product[];
     }
 
 public async getProduct (
@@ -63,20 +61,17 @@ public async getProduct (
     if(!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_IS_FOUND)
 
     if(memberId){
-        //checkexistense
         const input: ViewInput = {
             memberId: memberId,
             viewRefId: productId,
             viewGroup: ViewGroup.PRODUCT,
         }
         const existView = await this.viewService.checkViewExistence(input);
-        //insert view 
         console.log("existView",!!existView );
         if(!existView){
             console.log("planning to insert new view");
             await this.viewService.insertMemberView(input);
 
-            //Increase counts
             result = await this.productModel
             .findByIdAndUpdate(
                 productId,
@@ -87,39 +82,38 @@ public async getProduct (
         }
     }
 
-   return result;     
+   return result as unknown as Product;     
 }
 
     /*BSSR */
-public async getAllProducts(
-      ): Promise<Product[]>{
-    const result  = await this.productModel.find().exec();
+public async getAllProducts(): Promise<Product[]>{
+    const result = await this.productModel.find().exec();
         if(!result) 
             throw new Error(`${HttpCode.NOT_FOUND}: ${Message.NO_DATA_IS_FOUND}`);
         
-        return result;
+        return result as unknown as Product[];
     }
 
     public async createNewProduct(input: ProductInput): Promise<Product>{
         try{
-            return await this.productModel.create(input);
+            return await this.productModel.create(input) as unknown as Product;
         }catch(err){
             console.error("Error creating new product:", err);
             throw new Error(`${HttpCode.BAD_REQUEST}: ${Message.CREATE_FAILED}`);
         }
     }
+
     public async updateChosenProduct(
         id: string,
         input: ProductUpdateInput): Promise<Product>{
-    //    string to objectid
     id = shapeIntoMongooseObjectId(id);
-    const result  = await this.productModel.findByIdAndUpdate(
-    {_id: id},
-    input, {new: true}).exec();
+    const result = await this.productModel.findByIdAndUpdate(
+        {_id: id},
+        input, {new: true}).exec();
         if(!result) 
             throw new Error(`${HttpCode.NOT_MODIFIED}: ${Message.UPDATE_FAILED}`);
         
-        return result;
+        return result as unknown as Product;
     }
     
 }
